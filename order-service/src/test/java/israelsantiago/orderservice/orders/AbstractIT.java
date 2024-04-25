@@ -9,6 +9,10 @@ import static org.springframework.boot.test.context.SpringBootTest.WebEnvironmen
 import com.github.tomakehurst.wiremock.client.WireMock;
 import io.restassured.RestAssured;
 import java.math.BigDecimal;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.util.Locale;
+
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -35,6 +39,7 @@ public abstract class AbstractIT {
 
     @DynamicPropertySource
     static void configureProperties(DynamicPropertyRegistry registry) {
+        String wiremockbase = wiremockServer.getBaseUrl();
         registry.add("orders.catalog-service-url", wiremockServer::getBaseUrl);
     }
 
@@ -44,6 +49,10 @@ public abstract class AbstractIT {
     }
 
     protected static void mockGetProductByCode(String code, String name, BigDecimal price) {
+
+        DecimalFormat dFormat = new DecimalFormat("0.00", new DecimalFormatSymbols(Locale.US));
+        String priceStrValue = dFormat.format(price);
+
         stubFor(WireMock.get(urlMatching("/api/products/" + code))
                 .willReturn(aResponse()
                         .withHeader("Content-Type", MediaType.APPLICATION_JSON_VALUE)
@@ -53,9 +62,9 @@ public abstract class AbstractIT {
                     {
                         "code": "%s",
                         "name": "%s",
-                        "price": %f
+                        "price": "%s"
                     }
                 """
-                                        .formatted(code, name, price.doubleValue()))));
+                                        .formatted(code, name, priceStrValue))));
     }
 }
