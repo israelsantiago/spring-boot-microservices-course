@@ -6,6 +6,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.israelsantiago.bookstore.notifications.AbstractIT;
 import com.israelsantiago.bookstore.notifications.ApplicationProperties;
 import com.israelsantiago.bookstore.notifications.domain.models.Address;
 import com.israelsantiago.bookstore.notifications.domain.models.Customer;
@@ -30,7 +31,7 @@ class OrderEventHandlerTests extends AbstractIT {
     @Autowired
     ApplicationProperties properties;
 
-    Customer customer = new Customer("israel", "israel@gmail.com", "999999999");
+    Customer customer = new Customer("Siva", "siva@gmail.com", "999999999");
     Address address = new Address("addr line 1", null, "Hyderabad", "TS", "500072", "India");
 
     @Test
