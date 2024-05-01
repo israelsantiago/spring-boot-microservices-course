@@ -31,7 +31,7 @@ class OpenAPI3Configuration {
                         .title("Order Service APIs")
                         .description("BookStore Order Service APIs")
                         .version("v1.0.0")
-                        .contact(new Contact().name("Israel Santiago").email("israel.santiago75@gmail.com")))
+                        .contact(new Contact().name("SivaLabs").email("sivalabs@sivalabs.in")))
                 .servers(List.of(new Server().url(apiGatewayUrl)))
                 .addSecurityItem(new SecurityRequirement().addList("Authorization"))
                 .components(new Components()

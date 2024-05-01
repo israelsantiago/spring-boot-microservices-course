@@ -36,8 +36,8 @@ class SecurityConfig {
                         .permitAll()
                         .anyRequest()
                         .authenticated())
-                .cors(CorsConfigurer::disable) // not a good practice for production !
-                .csrf(CsrfConfigurer::disable) // not a good practice for production !
+                .cors(CorsConfigurer::disable)
+                .csrf(CsrfConfigurer::disable)
                 .oauth2Login(Customizer.withDefaults())
                 .logout(logout -> logout.clearAuthentication(true)
                         .invalidateHttpSession(true)

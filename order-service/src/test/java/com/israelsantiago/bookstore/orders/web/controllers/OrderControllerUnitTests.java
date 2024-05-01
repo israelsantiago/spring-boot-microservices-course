@@ -1,5 +1,8 @@
 package com.israelsantiago.bookstore.orders.web.controllers;
 
+import static com.israelsantiago.bookstore.orders.testdata.TestDataFactory.createOrderRequestWithInvalidCustomer;
+import static com.israelsantiago.bookstore.orders.testdata.TestDataFactory.createOrderRequestWithInvalidDeliveryAddress;
+import static com.israelsantiago.bookstore.orders.testdata.TestDataFactory.createOrderRequestWithNoItems;
 import static org.junit.jupiter.api.Named.named;
 import static org.junit.jupiter.params.provider.Arguments.arguments;
 import static org.mockito.ArgumentMatchers.any;
@@ -13,7 +16,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.israelsantiago.bookstore.orders.domain.OrderService;
 import com.israelsantiago.bookstore.orders.domain.SecurityService;
 import com.israelsantiago.bookstore.orders.domain.models.CreateOrderRequest;
-import com.israelsantiago.bookstore.orders.testdata.TestDataFactory;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -61,11 +63,8 @@ class OrderControllerUnitTests {
 
     static Stream<Arguments> createOrderRequestProvider() {
         return Stream.of(
-                arguments(
-                        named("Order with Invalid Customer", TestDataFactory.createOrderRequestWithInvalidCustomer())),
-                arguments(named(
-                        "Order with Invalid Delivery Address",
-                        TestDataFactory.createOrderRequestWithInvalidDeliveryAddress())),
-                arguments(named("Order with No Items", TestDataFactory.createOrderRequestWithNoItems())));
+                arguments(named("Order with Invalid Customer", createOrderRequestWithInvalidCustomer())),
+                arguments(named("Order with Invalid Delivery Address", createOrderRequestWithInvalidDeliveryAddress())),
+                arguments(named("Order with No Items", createOrderRequestWithNoItems())));
     }
 }

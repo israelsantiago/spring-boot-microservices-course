@@ -18,7 +18,7 @@ services:
       resources:
         limits:
           memory: 500m
-  
+
   orders-db:
     image: postgres:16-alpine
     container_name: orders-db
@@ -37,7 +37,7 @@ services:
       resources:
         limits:
           memory: 500m
-  
+
   bookstore-rabbitmq:
     image: rabbitmq:3.12.11-management
     container_name: bookstore-rabbitmq
@@ -56,7 +56,7 @@ services:
       resources:
         limits:
           memory: 500m
-  
+
   notifications-db:
     image: postgres:16-alpine
     container_name: notifications-db
@@ -75,14 +75,14 @@ services:
       resources:
         limits:
           memory: 500m
-  
+
   mailhog:
     image: mailhog/mailhog:v1.0.1
     container_name: mailhog
     ports:
       - "1025:1025"
       - "8025:8025"
-  
+
   keycloak:
     image: quay.io/keycloak/keycloak:24.0.2
     command: [ 'start-dev', '--import-realm', '--http-port=9191' ]
